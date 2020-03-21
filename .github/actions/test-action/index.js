@@ -1,1 +1,4 @@
-console.log("Hello World!");
+// In index.js
+const boxen = require("boxen");
+
+console.log(boxen("HELLO WORLD!!", { padding: 1 }));
