@@ -1,7 +1,15 @@
 name: Hello-World
 description: Example hello world running JavaScript Github Action
-runs:
-  using: node12
-  main: index.js $ALEJO_SECRET # This changed to point to our new JavaScript bundle
-  env: # Or as an environment variable
-    ALEJO_SECRET: ${{ secrets.ALEJO_SECRET }}
+
+on: push
+
+jobs:
+  testeo:
+    name: Main action
+    steps:
+      - uses: actions/checkout@master
+      - name: Test secret
+        uses: actions/setup-node@v1
+        run: index.js $ALEJO_SECRET
+        env:
+          ALEJO_SECRET: ${{ secrets.ALEJO_SECRET }}
