@@ -5,11 +5,24 @@ on: push
 jobs:
   testeo:
     runs-on: ubuntu-latest
-    name: Main action
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Test secret
+      - name: Step 1
+        id: step1
+        run: echo "::set-output name=VAR1::Hamel"
+
+      - name: Step 2
+        id: step2
+        run: echo "::set-env name=VAR2::Husain"
+
+      - name: emit env
+        run: |
+          echo $VAR2
+          echo $VAR1
+
         env:
-          ALEJO_SECRET: ${{ secrets.ALEJO_SECRET }}
-        uses: actions/setup-node@v1
-        run: index.js $ALEJO_SECRET
+          VAR1: ${{ steps.step1.outputs.VAR1 }}
+
+      - name: this should not run
+        run: echo "This should not run"
+        if: steps.step1.outputs.VAR1 == 'Lucy'
