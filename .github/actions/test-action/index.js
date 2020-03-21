@@ -1,4 +1,3 @@
 // In index.js
-const boxen = require("boxen");
-
-console.log(boxen("HELLO WORLD!!", { padding: 1 }));
+console.log("HELLO WORLD!!");
+console.log(process.argv);
